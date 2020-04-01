@@ -5,3 +5,22 @@
  */
 
 // You can delete this file if you're not using it
+
+exports.onCreateWebpackConfig = function onCreateWebpackConfig({
+  actions,
+  stage,
+  loaders,
+}) {
+  if (stage === "develop") {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /react-refresh-webpack-plugin/,
+            use: [loaders.js()],
+          },
+        ],
+      },
+    });
+  }
+};
